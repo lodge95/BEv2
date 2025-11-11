@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/header :: _">
+<body>
+<div class="container">
+  <h1 th:text="${listing.title}">Listing</h1>
+  <img th:src="${listing.imagePath != null ? listing.imagePath : '/static/img/placeholder.png'}" alt="image"/>
+  <p><strong>Industry:</strong> <span th:text="${listing.industry}"></span></p>
+  <p><strong>Location:</strong> <span th:text="${listing.location}"></span></p>
+  <p th:text="${listing.description}">Description</p>
+  <p><strong>Price:</strong> <span th:text="${listing.price}"></span></p>
+
+  <section>
+    <h3>Contact seller</h3>
+    <form method="post" action="/message/send">
+      <input type="hidden" name="listingId" th:value="${listing.id}" />
+      <textarea name="body" placeholder="Write a message to the seller"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <p><a href="/browse">Back to listings</a></p>
+</div>
+<th:block th:replace="fragments/footer :: _" />
+</body>
+</html>
