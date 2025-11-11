@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/header :: _">
+<body>
+<div class="container">
+  <h1 th:text="${user.displayName}">Dashboard</h1>
+  <section>
+    <h2>Your listings</h2>
+    <div th:if="${myListings.size()} == 0">You have no listings yet.</div>
+    <div class="card" th:each="l : ${myListings}">
+      <h4 th:text="${l.title}"></h4>
+      <p th:text="${l.industry}"></p>
+      <a th:href="@{'/listing/' + ${l.id}}">View</a>
+    </div>
+    <p><a href="/sell">Create a listing</a></p>
+  </section>
+</div>
+<th:block th:replace="fragments/footer :: _" />
+</body>
+</html>
