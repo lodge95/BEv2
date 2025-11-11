@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title th:replace="${title} ?: 'MyBizExchange'">MyBizExchange</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <a class="brand" href="/">MyBizExchange</a>
+        <nav>
+          <a href="/browse">Browse</a>
+          <a href="/sell">Sell</a>
+          <a href="/valuation">Valuation</a>
+          <a href="/about">About</a>
+          <span th:if="${#authentication.principal?.username == null}">
+            <a href="/login">Login</a> <a href="/register">Register</a>
+          </span>
+          <span th:if="${#authentication.principal?.username != null}">
+            <a href="/dashboard">Dashboard</a> <a href="/logout">Logout</a>
+          </span>
+        </nav>
+      </div>
+    </header>
