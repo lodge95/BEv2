@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/header :: _">
+<head>
+  <meta charset="UTF-8" />
+</head>
+<body>
+<div class="container">
+  <section class="hero">
+    <h1>Buy or Sell a Small Business</h1>
+    <p>Helping retiring owners transition their business with flexible deal structures.</p>
+    <p><a class="btn" href="/browse">Find a Business</a> <a class="btn ghost" href="/sell">Sell My Business</a></p>
+  </section>
+
+  <section>
+    <h2>Featured Listings</h2>
+    <div class="grid">
+      <div th:if="${featured.size()} == 0">No listings at the moment.</div>
+      <div class="card" th:each="l : ${featured}">
+        <img th:src="${l.imagePath != null ? l.imagePath : '/static/img/placeholder.png'}" alt="image" />
+        <h3 th:text="${l.title}">Title</h3>
+        <p th:text="${l.description}">Desc</p>
+        <p><strong th:text="${#numbers.formatDecimal(l.price, 0, 'COMMA', 2, 'POINT')}">$0</strong></p>
+        <a th:href="@{'/listing/' + ${l.id}}">View</a>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>How it works</h2>
+    <ol>
+      <li>Get a valuation</li>
+      <li>List your business</li>
+      <li>Secure a deal</li>
+    </ol>
+  </section>
+</div>
+
+<th:block th:replace="fragments/footer :: _" />
+</body>
+</html>
