@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/header :: _">
+<body>
+<div class="container">
+  <h1>Browse Businesses</h1>
+  <form method="get" action="/browse">
+    <input name="q" placeholder="Search by title or industry" th:value="${q}" />
+    <button type="submit">Search</button>
+  </form>
+
+  <div class="grid">
+    <div th:if="${listings.size()} == 0">No listings found.</div>
+    <div class="card" th:each="l : ${listings}">
+      <h3 th:text="${l.title}">Title</h3>
+      <p><strong th:text="${l.industry}">Industry</strong> • <span th:text="${l.location}">Location</span></p>
+      <p th:text="${l.description}">Description</p>
+      <p><strong th:text="${l.price}">$0</strong></p>
+      <a th:href="@{'/listing/' + ${l.id}}">View</a>
+    </div>
+  </div>
+  <p><a href="/">Back to home</a></p>
+</div>
+<th:block th:replace="fragments/footer :: _" />
+</body>
+</html>
