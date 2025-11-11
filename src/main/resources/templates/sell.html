@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="fragments/header :: _">
+<body>
+<div class="container">
+  <h1>List your business</h1>
+  <form method="post" action="/sell">
+    <label>Title <input name="title" th:value="${listing.title}"/></label><br/>
+    <label>Industry <input name="industry" th:value="${listing.industry}"/></label><br/>
+    <label>Location <input name="location" th:value="${listing.location}"/></label><br/>
+    <label>Price <input name="price" th:value="${listing.price}"/></label><br/>
+    <label>Description <textarea name="description" th:text="${listing.description}"></textarea></label><br/>
+    <button type="submit">Create Listing</button>
+  </form>
+</div>
+<th:block th:replace="fragments/footer :: _" />
+</body>
+</html>
