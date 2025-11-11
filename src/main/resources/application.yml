@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mybiz;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+  thymeleaf:
+    cache: false
+
+server:
+  port: 8080
+
+# Profiles:
+# - dev: defaults above
+# - prod: override using application-prod.yml or environment variables for DB, S3, etc.
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
